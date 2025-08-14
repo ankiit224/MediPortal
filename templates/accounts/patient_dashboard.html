@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Patient Dashboard | MediPortal{% endblock %}
+{% block content %}
+<h2>Patient Dashboard</h2>
+<p>Welcome, <strong>{{ user.get_full_name|default:user.username }}</strong></p>
+
+{% if user.profile_picture %}
+  <img src="{{ user.profile_picture.url }}" alt="profile" style="width:120px; height:120px; object-fit:cover; border-radius:50%;" />
+{% endif %}
+
+<ul>
+  <li><strong>Username:</strong> {{ user.username }}</li>
+  <li><strong>Email:</strong> {{ user.email }}</li>
+  <li><strong>Address:</strong> {{ user.address_line1 }}, {{ user.city }}, {{ user.state }} - {{ user.pincode }}</li>
+  <li><strong>User Type:</strong> {{ user.get_user_type_display }}</li>
+</ul>
+{% endblock %}
